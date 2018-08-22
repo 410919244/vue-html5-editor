@@ -122,7 +122,7 @@ export default {
             const config = this.$options.module.config
 
             const formData = new FormData()
-            formData.append(config.upload.fieldName || 'image', file)
+            // formData.append(config.upload.fieldName || 'image', file)
 
             if (typeof config.upload.params === 'object') {
                 Object.keys(config.upload.params).forEach((key) => {
@@ -136,6 +136,8 @@ export default {
                     }
                 })
             }
+            // 阿里OSS上传需要放在尾部
+            formData.append(config.upload.fieldName || 'image', file)
 
             const xhr = new XMLHttpRequest()
 
